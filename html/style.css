@@ -1,0 +1,335 @@
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+body {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Main container */
+#car-control-container {
+    display: block;
+    position: fixed;
+    left: 20px;
+    bottom: 350px; /* moved higher above the minimap for better visibility */
+}
+
+/* Main control panel */
+#main-interface {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: all 0.4s ease;
+    width: 280px;
+    background: linear-gradient(145deg, rgba(20,20,30,0.95), rgba(40,40,60,0.95));
+    border: 1px solid rgba(255,215,0,0.5);
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
+    border-radius: 10px;
+    color: white;
+    overflow: hidden;
+}
+
+/* Header styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: linear-gradient(145deg, rgba(255,215,0,0.3), rgba(255,255,255,0.2));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header h1 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#close-btn {
+    background: transparent;
+    border: none;
+    color: #ff5f5f;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#close-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Section styling */
+.section {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.section h2 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #7289da;
+    font-weight: 500;
+}
+
+/* Button grids */
+.door-controls, .seat-controls, .vehicle-controls {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+/* Button styling */
+button {
+    background: linear-gradient(135deg, #383838, #222222);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-left: 30px;
+}
+
+button i {
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #505050, #2a2a2a);
+    transform: translateY(-2px) scale(1.02);
+}
+
+button.open, button.active, #engine-btn.on, #lock-btn.locked {
+    background: linear-gradient(135deg, #ffd700, #ffffff);
+    color: #333;
+    box-shadow: 0 0 8px rgba(255,223,0,0.7);
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #444;
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+button.open::before, #engine-btn.on::before, #lock-btn.locked::before {
+    background: #0fef00;
+    box-shadow: 0 0 8px #0fef00;
+}
+
+/* Info display */
+#info-display {
+    color: #333;
+    border-radius: 8px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    animation: glow-pulse 4s ease-in-out infinite;
+    border: 2px solid #ffd700;
+}
+
+#info-display:hover {
+    transform: scale(1.05);
+}
+
+#info-display i {
+    color: #FFA500;
+    font-size: 16px;
+}
+
+#info-display span {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Door state indicators */
+.door-btn.open {
+    background-color: #ff5f5f;
+}
+
+/* Engine and lock button states */
+#engine-btn.on {
+    background-color: #43b581;
+}
+
+#lock-btn.locked {
+    background-color: #ff5f5f;
+}
+
+/* Collapsed and expanded styles */
+#car-control-container.expanded #main-interface {
+    max-height: 1000px;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    animation: neon-pulse 2s ease-in-out infinite alternate;
+}
+
+/* Neon pulse animation */
+@keyframes neon-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(255,215,0,0.5), inset 0 0 4px rgba(255,215,0,0.2); }
+  50%      { box-shadow: 0 0 16px rgba(255,215,0,0.8), inset 0 0 8px rgba(255,215,0,0.4); }
+}
+
+/* Glow pulse animation for info widget */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 0 5px rgba(255,255,255,0); }
+  50%      { box-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 0 15px rgba(255,255,255,0.6); }
+}
+
+/* Expanded panel neon glow */
+#car-control-container.expanded #main-interface {
+    animation: neon-pulse 2s ease-in-out infinite alternate;
+}
+
+/* Door open and engine/lock indicators pulse */
+button.open::before,
+#engine-btn.on::before,
+#lock-btn.locked::before {
+    animation: neon-pulse 2s ease-in-out infinite alternate;
+}
+
+/* Weather & Day/Night background styles */
+
+/* Clear */
+#info-display.weather-clear.day {
+    background: linear-gradient(to right, #6DD5FA, #FFFFFF) !important;
+    color: #333;
+}
+#info-display.weather-clear.night {
+    background: linear-gradient(to right, #2c3e50, #000000) !important;
+    color: #fff;
+}
+
+/* Extra Sunny */
+#info-display.weather-extra-sunny.day {
+    background: linear-gradient(to right, #FFEE58, #FFD600) !important;
+    color: #333;
+}
+#info-display.weather-extra-sunny.night {
+    background: linear-gradient(to right, #4B79A1, #283E51) !important;
+    color: #fff;
+}
+
+/* Cloudy */
+#info-display.weather-cloudy.day {
+    background: linear-gradient(to right, #ECE9E6, #FFFFFF) !important;
+    color: #333;
+}
+#info-display.weather-cloudy.night {
+    background: linear-gradient(to right, #757F9A, #D7DDE8) !important;
+    color: #fff;
+}
+
+/* Overcast */
+#info-display.weather-overcast.day {
+    background: linear-gradient(to right, #2c3e50, #4CA1AF) !important;
+    color: #fff;
+}
+#info-display.weather-overcast.night {
+    background: linear-gradient(to right, #232526, #414345) !important;
+    color: #fff;
+}
+
+/* Rain */
+#info-display.weather-rain.day {
+    background: linear-gradient(to right, #000046, #1CB5E0) !important;
+    color: #fff;
+}
+#info-display.weather-rain.night {
+    background: linear-gradient(to right, #0F0C29, #302B63) !important;
+    color: #fff;
+}
+
+/* Clearing */
+#info-display.weather-clearing.day {
+    background: linear-gradient(to right, #EDE574, #E1F5C4) !important;
+    color: #333;
+}
+#info-display.weather-clearing.night {
+    background: linear-gradient(to right, #2c3e50, #4ca1af) !important;
+    color: #fff;
+}
+
+/* Thunder */
+#info-display.weather-thunder.day {
+    background: linear-gradient(to right, #283048, #859398) !important;
+    color: #fff;
+}
+#info-display.weather-thunder.night {
+    background: linear-gradient(to right, #000000, #434343) !important;
+    color: #fff;
+}
+
+/* Smog */
+#info-display.weather-smog.day {
+    background: linear-gradient(to right, #3E5151, #DECBA4) !important;
+    color: #333;
+}
+#info-display.weather-smog.night {
+    background: linear-gradient(to right, #232526, #414345) !important;
+    color: #fff;
+}
+
+/* Foggy */
+#info-display.weather-foggy.day {
+    background: linear-gradient(to right, #bdc3c7, #2c3e50) !important;
+    color: #333;
+}
+#info-display.weather-foggy.night {
+    background: linear-gradient(to right, #536976, #292E49) !important;
+    color: #fff;
+}
+
+/* Snowy */
+#info-display.weather-snowy.day {
+    background: linear-gradient(to right, #E6DADA, #274046) !important;
+    color: #333;
+}
+#info-display.weather-snowy.night {
+    background: linear-gradient(to right, #2F0743, #000C40) !important;
+    color: #fff;
+}
+
+/* Light Snow */
+#info-display.weather-light-snow.day {
+    background: linear-gradient(to right, #EAEAEA, #FFFFFF) !important;
+    color: #333;
+}
+#info-display.weather-light-snow.night {
+    background: linear-gradient(to right, #3E5151, #DECBA4) !important;
+    color: #fff;
+}
+
+/* Blizzard */
+#info-display.weather-blizzard.day {
+    background: linear-gradient(to right, #83a4d4, #b6fbff) !important;
+    color: #333;
+}
+#info-display.weather-blizzard.night {
+    background: linear-gradient(to right, #1e3c72, #2a5298) !important;
+    color: #fff;
+} 

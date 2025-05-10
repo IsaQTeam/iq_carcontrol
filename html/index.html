@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IQ Car Control</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="car-control-container">
+        <div id="main-interface">
+            <div class="header">
+                <h1>Vehicle Control</h1>
+                <button id="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="section">
+                <h2>Door Controls</h2>
+                <div class="door-controls">
+                    <button id="door-0" class="door-btn"><i class="fas fa-door-open"></i> Driver</button>
+                    <button id="door-1" class="door-btn"><i class="fas fa-door-open"></i> Passenger</button>
+                    <button id="door-2" class="door-btn"><i class="fas fa-door-open"></i> Rear Left</button>
+                    <button id="door-3" class="door-btn"><i class="fas fa-door-open"></i> Rear Right</button>
+                    <button id="door-4" class="door-btn"><i class="fas fa-car"></i> Hood</button>
+                    <button id="door-5" class="door-btn"><i class="fas fa-suitcase"></i> Trunk</button>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Seat Controls</h2>
+                <div class="seat-controls">
+                    <button id="seat-minus1" class="seat-btn"><i class="fas fa-chair"></i> Driver</button>
+                    <button id="seat-0" class="seat-btn"><i class="fas fa-chair"></i> Passenger</button>
+                    <button id="seat-1" class="seat-btn"><i class="fas fa-chair"></i> Rear Left</button>
+                    <button id="seat-2" class="seat-btn"><i class="fas fa-chair"></i> Rear Right</button>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Vehicle Controls</h2>
+                <div class="vehicle-controls">
+                    <button id="engine-btn"><i class="fas fa-power-off"></i> <span>Engine Off</span></button>
+                    <button id="lock-btn"><i class="fas fa-lock"></i> <span>Unlock</span></button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="info-display">
+            <div class="time-display">
+                <i class="fas fa-clock"></i>
+                <span id="time">12:00 AM</span>
+            </div>
+            <div class="weather-display">
+                <i class="fas fa-cloud-sun"></i>
+                <span id="weather">Clear</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
